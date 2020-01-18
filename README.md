@@ -52,4 +52,8 @@ All outputs must print to the command line.
    - Price a basket containing: 3 apples, 2 tins of soup and a loaf of bread, bought in 5 days time,
      - Expected total cost = 1.97.
  
- 
+### My comments and assumptions
+  TODO: Add my comments and assumptions
+
+### How to run it
+  TODO: Instructions how to run the application
