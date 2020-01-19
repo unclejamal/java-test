@@ -3,8 +3,10 @@ package shop;
 import org.junit.Test;
 import org.mockito.Mockito;
 import shop.cli.CommandLineOutput;
+import shop.cli.ProductMetadata;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static java.util.Arrays.asList;
 import static org.mockito.Mockito.verify;
@@ -24,10 +26,10 @@ public class PriceBasketCommandTest {
 
     @Test
     public void nonEmptyBasket() {
-        List<BasketPosition> basketContent = asList(
-                new BasketPosition(1, "apple"),
-                new BasketPosition(3, "cars")
-        );
+        Set<BasketPosition> basketContent = new HashSet<>(asList(
+                new BasketPosition(1, new ProductMetadata("apple", "apples")),
+                new BasketPosition(3, new ProductMetadata("car", "cars"))
+        ));
         BasketPricing basketPricing = new BasketPricing(1.55d, basketContent);
         when(basket.getBasketPricing()).thenReturn(basketPricing);
 

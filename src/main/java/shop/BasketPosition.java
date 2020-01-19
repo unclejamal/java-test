@@ -1,12 +1,14 @@
 package shop;
 
+import shop.cli.ProductMetadata;
+
 public class BasketPosition extends ValueObject {
 
     public int quantity;
-    public String product;
+    public ProductMetadata productMetadata;
 
-    public BasketPosition(int quantity, String product) {
+    public BasketPosition(int quantity, ProductMetadata productMetadata) {
         this.quantity = quantity;
-        this.product = product;
+        this.productMetadata = productMetadata;
     }
 }

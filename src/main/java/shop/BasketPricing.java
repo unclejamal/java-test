@@ -1,16 +1,16 @@
 package shop;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BasketPricing extends ValueObject {
 
-    public static final BasketPricing EMPTY_BASKET_PRICING = new BasketPricing(0.00d, new ArrayList<>());
+    public static final BasketPricing EMPTY_BASKET_PRICING = new BasketPricing(0.00d, new HashSet<>());
 
     public final double totalCost;
-    public final List<BasketPosition> basketPositions;
+    public final Set<BasketPosition> basketPositions;
 
-    public BasketPricing(double totalCost, List<BasketPosition> basketPositions) {
+    public BasketPricing(double totalCost, Set<BasketPosition> basketPositions) {
         this.totalCost = totalCost;
         this.basketPositions = basketPositions;
     }

@@ -1,8 +1,10 @@
 package shop.cli;
 
+import shop.BasketPosition;
 import shop.BasketPricing;
 
 import java.io.PrintWriter;
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 public class CommandLineOutput {
@@ -30,7 +32,16 @@ public class CommandLineOutput {
 
     private String getJoin(BasketPricing basketPricing) {
         return basketPricing.basketPositions.stream()
-                .map(bp -> bp.quantity + " " + bp.product)
+                .sorted(Comparator.comparing(basketPosition -> basketPosition.productMetadata.singularName))
+                .map(CommandLineOutput::asString)
                 .collect(Collectors.joining(", "));
+    }
+
+    public static String asString(BasketPosition basketPosition) {
+        return basketPosition.quantity + " " + productMetadataAsString(basketPosition.productMetadata, basketPosition.quantity);
+    }
+
+    private static String productMetadataAsString(ProductMetadata productMetadata, int quantity) {
+        return quantity == 1 ? productMetadata.singularName : productMetadata.pluralName;
     }
 }
