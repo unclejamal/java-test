@@ -1,5 +1,7 @@
 package shop;
 
+import shop.cli.CommandLineOutput;
+
 import java.io.*;
 
 public class Main {
@@ -9,9 +11,10 @@ public class Main {
     }
 
     public Thread createShoppingApplicationThread(InputStream in, OutputStream out) {
+        final PrintWriter writer = new PrintWriter(out, true);
         ShopApplication shopApplication = new ShopApplication(
                 new BufferedReader(new InputStreamReader(in)),
-                new PrintWriter(out, true)
+                new CommandLineOutput(writer)
         );
 
         return new Thread(shopApplication);

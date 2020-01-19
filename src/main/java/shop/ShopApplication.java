@@ -1,15 +1,16 @@
 package shop;
 
+import shop.cli.CommandLineOutput;
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class ShopApplication implements Runnable {
-    private final PrintWriter writer;
     private final BufferedReader reader;
+    private final CommandLineOutput commandLineOutput;
 
-    public ShopApplication(BufferedReader reader, PrintWriter writer) {
-        this.writer = writer;
+    public ShopApplication(BufferedReader reader, CommandLineOutput commandLineOutput) {
+        this.commandLineOutput = commandLineOutput;
         this.reader = reader;
     }
 
@@ -33,10 +34,10 @@ public class ShopApplication implements Runnable {
                     if (basket.getApples() != 1) {
                         product = "apples";
                     }
-                    writer.printf("Total cost: £%.2f (for basket with: %d " + product + ")%n", totalCost, basket.getApples());
+                    commandLineOutput.showLine(String.format("Total cost: £%.2f (for basket with: %d " + product + ")%n", totalCost, basket.getApples()));
 
                 } else {
-                    writer.println("Unknown command");
+                    commandLineOutput.showLine("Unknown command");
                 }
 
             } catch (IOException e) {
