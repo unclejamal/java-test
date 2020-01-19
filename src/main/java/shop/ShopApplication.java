@@ -28,7 +28,7 @@ public class ShopApplication implements Runnable {
                 }
 
                 if (command.startsWith("buy")) {
-                    handleBuy(basket, command);
+                    new BuyCommand(commandLineOutput).handleBuy(basket, command);
 
                 } else if (command.equals("price")) {
                     handlePriceBasket(basket);
@@ -40,18 +40,6 @@ public class ShopApplication implements Runnable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }
-    }
-
-    private void handleBuy(Basket basket, String command) {
-        if (command.equals("buy 1 apple")) {
-            basket.addApples(1);
-
-        } else if (command.equals("buy 1 bottle of milk")) {
-            basket.addBottlesOfMilk(1);
-
-        } else {
-            commandLineOutput.showLine("Henry's Groceries doesn't have \"nonExistingProduct\" at this point. Anything else we can help with?");
         }
     }
 

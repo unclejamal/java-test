@@ -103,7 +103,7 @@ public class EndToEndTest {
     @Test
     public void buyNonExistingProduct() throws Exception {
         enter("buy 1 nonExistingProduct");
-        assertOutputLines("Henry's Groceries doesn't have \"nonExistingProduct\" at this point. Anything else we can help with?");
+        assertOutputLines("Henry's Groceries doesn't have \"1 nonExistingProduct\" at this point. Anything else we can help with?");
         enter("quit");
     }
 
