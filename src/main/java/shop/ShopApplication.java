@@ -4,6 +4,8 @@ import shop.cli.CommandLineOutput;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShopApplication implements Runnable {
     private final BufferedReader reader;
@@ -47,24 +49,34 @@ public class ShopApplication implements Runnable {
     }
 
     private void priceBasket(Basket basket) {
-        if (basket.getBottlesOfMilk() > 0) {
-            double totalCost = 1.30 * basket.getBottlesOfMilk();
-            String product = "bottle of milk";
-            if (basket.getBottlesOfMilk() != 1) {
-                product = "bottles of milk";
-            }
-            commandLineOutput.showLine(String.format("Total cost: £%.2f", totalCost));
-            commandLineOutput.showLine(String.format("Basket content: %d %s", basket.getBottlesOfMilk(), product));
+        double totalCost = 0.0d;
+        List<String> basketContent = new ArrayList<>();
 
-        } else {
-            double totalCost = 0.10 * basket.getApples();
+        if (basket.getApples() > 0) {
+            double applesCost = 0.10 * basket.getApples();
             String product = "apple";
             if (basket.getApples() != 1) {
                 product = "apples";
             }
-            commandLineOutput.showLine(String.format("Total cost: £%.2f", totalCost));
-            commandLineOutput.showLine(String.format("Basket content: %d %s", basket.getApples(), product));
+
+            totalCost += applesCost;
+            basketContent.add(String.format("%d %s", basket.getApples(), product));
         }
+
+        if (basket.getBottlesOfMilk() > 0) {
+            double milkCost = 1.30 * basket.getBottlesOfMilk();
+            String product = "bottle of milk";
+            if (basket.getBottlesOfMilk() != 1) {
+                product = "bottles of milk";
+            }
+
+            totalCost += milkCost;
+            basketContent.add(String.format("%d %s", basket.getBottlesOfMilk(), product));
+        }
+
+
+        commandLineOutput.showLine(String.format("Total cost: £%.2f", totalCost));
+        commandLineOutput.showLine(String.format("Basket content: %s", String.join(", ", basketContent)));
     }
 
 }

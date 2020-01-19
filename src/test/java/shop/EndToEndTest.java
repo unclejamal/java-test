@@ -54,7 +54,7 @@ public class EndToEndTest {
     public void priceOneApple() throws Exception {
         enter("buy 1 apple");
         enter("price");
-        assertOutputLines(                "Total cost: £0.10",
+        assertOutputLines("Total cost: £0.10",
                 "Basket content: 1 apple");
         enter("quit");
     }
@@ -75,7 +75,7 @@ public class EndToEndTest {
     public void priceOneBottleOfMilk() throws Exception {
         enter("buy 1 bottle of milk");
         enter("price");
-        assertOutputLines(                "Total cost: £1.30",
+        assertOutputLines("Total cost: £1.30",
                 "Basket content: 1 bottle of milk");
         enter("quit");
     }
@@ -85,8 +85,18 @@ public class EndToEndTest {
         enter("buy 1 bottle of milk");
         enter("buy 1 bottle of milk");
         enter("price");
-        assertOutputLines(                "Total cost: £2.60",
+        assertOutputLines("Total cost: £2.60",
                 "Basket content: 2 bottles of milk");
+        enter("quit");
+    }
+
+    @Test
+    public void priceMixedBasketWithOneAppleAndOneBottleOfMilk() throws Exception {
+        enter("buy 1 apple");
+        enter("buy 1 bottle of milk");
+        enter("price");
+        assertOutputLines("Total cost: £1.40",
+                "Basket content: 1 apple, 1 bottle of milk");
         enter("quit");
     }
 
