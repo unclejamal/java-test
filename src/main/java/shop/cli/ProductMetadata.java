@@ -12,4 +12,8 @@ public class ProductMetadata extends ValueObject {
         this.pluralName = pluralName;
         this.price = price;
     }
+
+    public boolean matches(String product) {
+        return singularName.equals(product) || pluralName.equals(product);
+    }
 }

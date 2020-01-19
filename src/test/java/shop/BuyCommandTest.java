@@ -11,7 +11,14 @@ public class BuyCommandTest {
 
     private Basket basket = Mockito.mock(Basket.class);
     private CommandLineOutput commandLineOutput = Mockito.mock(CommandLineOutput.class);
-    private BuyCommand buyCommand = new BuyCommand(commandLineOutput);
+    private BuyCommand buyCommand = new BuyCommand(
+            commandLineOutput,
+            new ProductCatalog(
+                    new ProductMetadata("apple", "apples", 0.10d),
+                    new ProductMetadata("bottle of milk", "bottles of milk", 1.30d),
+                    new ProductMetadata("tin of soup", "tins of soup", 0.65d)
+            )
+    );
 
     @Test
     public void buyWithoutQuantity() {

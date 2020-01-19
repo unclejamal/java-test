@@ -3,14 +3,18 @@ package shop;
 import shop.cli.CommandLineOutput;
 import shop.cli.ProductMetadata;
 
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BuyCommand {
-    private CommandLineOutput commandLineOutput;
 
-    public BuyCommand(CommandLineOutput commandLineOutput) {
+    private final ProductCatalog productCatalog;
+    private final CommandLineOutput commandLineOutput;
+
+    public BuyCommand(CommandLineOutput commandLineOutput, ProductCatalog productCatalog) {
         this.commandLineOutput = commandLineOutput;
+        this.productCatalog = productCatalog;
     }
 
     public void handleBuy(Basket basket, String command) {
@@ -25,18 +29,14 @@ public class BuyCommand {
         String product = matcher.group(2);
 
 
-        if (product.equals("apple") || product.equals("apples")) {
-            basket.addProduct(quantity, new ProductMetadata("apple", "apples", 0.10d));
-
-        } else if (product.equals("bottle of milk") || product.equals("bottles of milk")) {
-            basket.addProduct(quantity, new ProductMetadata("bottle of milk", "bottles of milk", 1.30d));
-
-        } else if (product.equals("tin of soup") || product.equals("tins of soup")) {
-            basket.addProduct(quantity, new ProductMetadata("tin of soup", "tins of soup", 0.65d));
+        Optional<ProductMetadata> productMetadata = productCatalog.findProductMetadata(product);
+        if (productMetadata.isPresent()) {
+            basket.addProduct(quantity, productMetadata.get());
 
         } else {
             String missingItem = quantity + " " + product;
             commandLineOutput.showLine("Henry's Groceries doesn't have \"" + missingItem + "\" at this point. Anything else we can help with?");
+
         }
     }
 }

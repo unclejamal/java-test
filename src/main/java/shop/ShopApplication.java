@@ -10,10 +10,10 @@ public class ShopApplication implements Runnable {
     private final CommandLineOutput commandLineOutput;
     private final BuyCommand buyCommand;
 
-    public ShopApplication(BufferedReader reader, CommandLineOutput commandLineOutput) {
+    public ShopApplication(BufferedReader reader, CommandLineOutput commandLineOutput, ProductCatalog productCatalog) {
         this.commandLineOutput = commandLineOutput;
         this.reader = reader;
-        buyCommand = new BuyCommand(commandLineOutput);
+        this.buyCommand = new BuyCommand(commandLineOutput, productCatalog);
     }
 
     @Override
