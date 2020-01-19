@@ -8,10 +8,12 @@ import java.io.IOException;
 public class ShopApplication implements Runnable {
     private final BufferedReader reader;
     private final CommandLineOutput commandLineOutput;
+    private final BuyCommand buyCommand;
 
     public ShopApplication(BufferedReader reader, CommandLineOutput commandLineOutput) {
         this.commandLineOutput = commandLineOutput;
         this.reader = reader;
+        buyCommand = new BuyCommand(commandLineOutput);
     }
 
     @Override
@@ -28,7 +30,7 @@ public class ShopApplication implements Runnable {
                 }
 
                 if (command.startsWith("buy")) {
-                    new BuyCommand(commandLineOutput).handleBuy(basket, command);
+                    buyCommand.handleBuy(basket, command);
 
                 } else if (command.equals("price")) {
                     handlePriceBasket(basket);
