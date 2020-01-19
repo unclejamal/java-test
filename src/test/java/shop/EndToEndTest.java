@@ -71,6 +71,25 @@ public class EndToEndTest {
         enter("quit");
     }
 
+    @Test
+    public void priceOneBottleOfMilk() throws Exception {
+        enter("buy 1 bottle of milk");
+        enter("price");
+        assertOutputLines(                "Total cost: £1.30",
+                "Basket content: 1 bottle of milk");
+        enter("quit");
+    }
+
+    @Test
+    public void priceTwoBottlesOfMilk() throws Exception {
+        enter("buy 1 bottle of milk");
+        enter("buy 1 bottle of milk");
+        enter("price");
+        assertOutputLines(                "Total cost: £2.60",
+                "Basket content: 2 bottles of milk");
+        enter("quit");
+    }
+
     private void enter(String command) throws IOException {
         read(CommandLineOutput.PROMPT);
         inWriter.println(command);
