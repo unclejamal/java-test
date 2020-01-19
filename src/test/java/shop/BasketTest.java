@@ -24,7 +24,7 @@ public class BasketTest {
     @Test
     public void contentOfEmptyBasket() {
         Basket basket = new Basket();
-        assertThat(basket.getContent(), equalTo(""));
+        assertThat(basket.getContent(), equalTo("<empty>"));
     }
 
     @Test

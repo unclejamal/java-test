@@ -33,7 +33,7 @@ public class ShopApplication implements Runnable {
                     buyCommand.handleBuy(basket, command);
 
                 } else if (command.equals("price")) {
-                    handlePriceBasket(basket);
+                    new PriceBasketCommand(commandLineOutput).handlePriceBasket(basket);
 
                 } else {
                     handleUnknownCommand();
@@ -45,10 +45,6 @@ public class ShopApplication implements Runnable {
         }
     }
 
-    private void handlePriceBasket(Basket basket) {
-        commandLineOutput.showLine(String.format("Total cost: £%.2f", basket.getTotalCost()));
-        commandLineOutput.showLine(String.format("Basket content: %s", basket.getContent()));
-    }
 
     private void handleUnknownCommand() {
         commandLineOutput.showLine("Unknown command");

@@ -40,6 +40,7 @@ public class Basket {
             basketContent.add(String.format("%d %s", bottlesOfMilk, product));
         }
 
+        if (basketContent.isEmpty()) return "<empty>";
         return String.join(", ", basketContent);
     }
 }
