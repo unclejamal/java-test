@@ -49,29 +49,8 @@ public class ShopApplication implements Runnable {
     }
 
     private void priceBasket(Basket basket) {
-        List<String> basketContent = new ArrayList<>();
-
-        if (basket.getApples() > 0) {
-            String product = "apple";
-            if (basket.getApples() != 1) {
-                product = "apples";
-            }
-
-            basketContent.add(String.format("%d %s", basket.getApples(), product));
-        }
-
-        if (basket.getBottlesOfMilk() > 0) {
-            String product = "bottle of milk";
-            if (basket.getBottlesOfMilk() != 1) {
-                product = "bottles of milk";
-            }
-
-            basketContent.add(String.format("%d %s", basket.getBottlesOfMilk(), product));
-        }
-
-
         commandLineOutput.showLine(String.format("Total cost: £%.2f", basket.getTotalCost()));
-        commandLineOutput.showLine(String.format("Basket content: %s", String.join(", ", basketContent)));
+        commandLineOutput.showLine(String.format("Basket content: %s", basket.getContent()));
     }
 
 }
