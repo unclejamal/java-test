@@ -34,24 +34,7 @@ public class ShopApplication implements Runnable {
                     basket.addBottlesOfMilk(1);
 
                 } else if (command.equals("price")) {
-                    if (basket.getBottlesOfMilk() > 0) {
-                        double totalCost = 1.30 * basket.getBottlesOfMilk();
-                        String product = "bottle of milk";
-                        if (basket.getBottlesOfMilk() != 1) {
-                            product = "bottles of milk";
-                        }
-                        commandLineOutput.showLine(String.format("Total cost: £%.2f", totalCost));
-                        commandLineOutput.showLine(String.format("Basket content: %d %s", basket.getBottlesOfMilk(), product));
-
-                    } else {
-                        double totalCost = 0.10 * basket.getApples();
-                        String product = "apple";
-                        if (basket.getApples() != 1) {
-                            product = "apples";
-                        }
-                        commandLineOutput.showLine(String.format("Total cost: £%.2f", totalCost));
-                        commandLineOutput.showLine(String.format("Basket content: %d %s", basket.getApples(), product));
-                    }
+                    priceBasket(basket);
 
                 } else {
                     commandLineOutput.showLine("Unknown command");
@@ -60,6 +43,27 @@ public class ShopApplication implements Runnable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    private void priceBasket(Basket basket) {
+        if (basket.getBottlesOfMilk() > 0) {
+            double totalCost = 1.30 * basket.getBottlesOfMilk();
+            String product = "bottle of milk";
+            if (basket.getBottlesOfMilk() != 1) {
+                product = "bottles of milk";
+            }
+            commandLineOutput.showLine(String.format("Total cost: £%.2f", totalCost));
+            commandLineOutput.showLine(String.format("Basket content: %d %s", basket.getBottlesOfMilk(), product));
+
+        } else {
+            double totalCost = 0.10 * basket.getApples();
+            String product = "apple";
+            if (basket.getApples() != 1) {
+                product = "apples";
+            }
+            commandLineOutput.showLine(String.format("Total cost: £%.2f", totalCost));
+            commandLineOutput.showLine(String.format("Basket content: %d %s", basket.getApples(), product));
         }
     }
 
