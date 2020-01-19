@@ -20,7 +20,7 @@ public class Main {
                 new ProductMetadata("apple", "apples", 0.10d),
                 new ProductMetadata("bottle of milk", "bottles of milk", 1.30d),
                 new ProductMetadata("tin of soup", "tins of soup", 0.65d),
-                new ProductMetadata("loaf of bread", "loafs of bread", 0.80d)
+                new ProductMetadata("loaf of bread", "loaves of bread", 0.80d)
         );
     }
 

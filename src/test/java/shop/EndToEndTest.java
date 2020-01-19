@@ -2,6 +2,7 @@ package shop;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import shop.cli.CommandLineOutput;
 import shop.cli.ProductMetadata;
@@ -32,7 +33,7 @@ public class EndToEndTest {
                         new ProductMetadata("apple", "apples", 0.10d),
                         new ProductMetadata("bottle of milk", "bottles of milk", 1.30d),
                         new ProductMetadata("tin of soup", "tins of soup", 0.65d),
-                        new ProductMetadata("loaf of bread", "loafs of bread", 0.80d)
+                        new ProductMetadata("loaf of bread", "loaves of bread", 0.80d)
                 )
         );
         shoppingApplicationThread.start();
@@ -70,6 +71,50 @@ public class EndToEndTest {
         enter("price");
         assertOutputLines("Total cost: £4.35",
                 "Basket content: 3 apples, 1 bottle of milk, 1 loaf of bread, 3 tins of soup");
+        enter("quit");
+    }
+
+    @Test
+    @Ignore("WIP: Should be 3.15")
+    public void acceptanceTest_3TinsOfSoup2LoavesOfBreadBoughtToday() throws Exception {
+        enter("buy 3 tins of soup");
+        enter("buy 2 loaves of bread");
+        enter("price");
+        assertOutputLines("Total cost: £3.15",
+                "Basket content: 2 loaves of bread, 3 tins of soup");
+        enter("quit");
+    }
+
+    @Test
+    public void acceptanceTest_6ApplesAndABottleOfMilkBoughtToday() throws Exception {
+        enter("buy 6 apples");
+        enter("buy 1 bottle of milk");
+        enter("price");
+        assertOutputLines("Total cost: £1.90",
+                "Basket content: 6 apples, 1 bottle of milk");
+        enter("quit");
+    }
+
+    @Test
+    @Ignore("WIP: Add support for in 5 days time")
+    public void acceptanceTest_6ApplesAndABottleOfMilkBoughtIn5DaysTime() throws Exception {
+        enter("buy 6 apples");
+        enter("buy 1 bottle of milk");
+        enter("price");
+        assertOutputLines("Total cost: £1.84",
+                "Basket content: 6 apples, 1 bottle of milk");
+        enter("quit");
+    }
+
+    @Test
+    @Ignore("WIP: Add support for in 5 days time")
+    public void acceptanceTest_3ApplesAnd2TinsOfSoupAndALoafOfBreadBoughtIn5DaysTime() throws Exception {
+        enter("buy 3 apples");
+        enter("buy 2 tins of soup");
+        enter("buy 1 loaf of bread");
+        enter("price");
+        assertOutputLines("Total cost: £1.97",
+                "Basket content: 3 apples, 1 loaf of bread, 2 tins of soup");
         enter("quit");
     }
 
