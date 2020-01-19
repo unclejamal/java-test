@@ -10,7 +10,6 @@ import java.io.*;
 import static java.lang.System.lineSeparator;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
 
 public class EndToEndTest {
 
@@ -55,7 +54,8 @@ public class EndToEndTest {
     public void priceOneApple() throws Exception {
         enter("buy 1 apple");
         enter("price");
-        assertOutputLines("Total cost: £0.10 (for basket with: 1 apple)");
+        assertOutputLines(                "Total cost: £0.10",
+                "Basket content: 1 apple");
         enter("quit");
     }
 
@@ -64,7 +64,10 @@ public class EndToEndTest {
         enter("buy 1 apple");
         enter("buy 1 apple");
         enter("price");
-        assertOutputLines("Total cost: £0.20 (for basket with: 2 apples)");
+        assertOutputLines(
+                "Total cost: £0.20",
+                "Basket content: 2 apples"
+        );
         enter("quit");
     }
 

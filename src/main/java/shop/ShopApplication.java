@@ -36,7 +36,8 @@ public class ShopApplication implements Runnable {
                     if (basket.getApples() != 1) {
                         product = "apples";
                     }
-                    commandLineOutput.showLine(String.format("Total cost: £%.2f (for basket with: %d " + product + ")", totalCost, basket.getApples()));
+                    commandLineOutput.showLine(String.format("Total cost: £%.2f", totalCost));
+                    commandLineOutput.showLine(String.format("Basket content: %d %s", basket.getApples(), product));
 
                 } else {
                     commandLineOutput.showLine("Unknown command");
