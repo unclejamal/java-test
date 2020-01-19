@@ -4,8 +4,6 @@ import shop.cli.CommandLineOutput;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ShopApplication implements Runnable {
     private final BufferedReader reader;
@@ -29,17 +27,14 @@ public class ShopApplication implements Runnable {
                     break;
                 }
 
-                if (command.equals("buy 1 apple")) {
-                    basket.addApples(1);
-
-                } else if (command.equals("buy 1 bottle of milk")) {
-                    basket.addBottlesOfMilk(1);
+                if (command.startsWith("buy")) {
+                    handleBuy(basket, command);
 
                 } else if (command.equals("price")) {
-                    priceBasket(basket);
+                    handlePriceBasket(basket);
 
                 } else {
-                    commandLineOutput.showLine("Unknown command");
+                    handleUnknownCommand();
                 }
 
             } catch (IOException e) {
@@ -48,9 +43,22 @@ public class ShopApplication implements Runnable {
         }
     }
 
-    private void priceBasket(Basket basket) {
+    private void handleBuy(Basket basket, String command) {
+        if (command.equals("buy 1 apple")) {
+            basket.addApples(1);
+
+        } else if (command.equals("buy 1 bottle of milk")) {
+            basket.addBottlesOfMilk(1);
+        }
+    }
+
+    private void handlePriceBasket(Basket basket) {
         commandLineOutput.showLine(String.format("Total cost: £%.2f", basket.getTotalCost()));
         commandLineOutput.showLine(String.format("Basket content: %s", basket.getContent()));
+    }
+
+    private void handleUnknownCommand() {
+        commandLineOutput.showLine("Unknown command");
     }
 
 }
