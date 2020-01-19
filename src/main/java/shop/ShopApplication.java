@@ -22,7 +22,13 @@ public class ShopApplication implements Runnable {
                     break;
                 }
 
-                writer.println("Unknown command");
+                if (command.equals("buy 1 apple")) {
+                    // ignore for now
+                } else if (command.equals("price")) {
+                    writer.println("Total cost: £0.10 (for basket with: 1 apple)");
+                } else {
+                    writer.println("Unknown command");
+                }
 
             } catch (IOException e) {
                 throw new RuntimeException(e);

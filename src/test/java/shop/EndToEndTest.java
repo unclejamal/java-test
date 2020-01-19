@@ -47,6 +47,14 @@ public class EndToEndTest {
         enter("quit");
     }
 
+    @Test
+    public void priceOneApple() throws Exception {
+        enter("buy 1 apple");
+        enter("price");
+        assertOutputLines("Total cost: £0.10 (for basket with: 1 apple)");
+        enter("quit");
+    }
+
     private void enter(String command) {
         inWriter.println(command);
     }
