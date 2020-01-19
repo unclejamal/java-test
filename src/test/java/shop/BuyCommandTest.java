@@ -54,5 +54,17 @@ public class BuyCommandTest {
         verify(basket).addBottlesOfMilk(2);
     }
 
+    @Test
+    public void buyOneTinOfSoup() {
+        buyCommand.handleBuy(basket, "buy 1 tin of soup");
+        verify(basket).addTinsOfSoup(1);
+    }
+
+    @Test
+    public void buyTwoTinsOfSoup() {
+        buyCommand.handleBuy(basket, "buy 2 tins of soup");
+        verify(basket).addTinsOfSoup(2);
+    }
+
 
 }

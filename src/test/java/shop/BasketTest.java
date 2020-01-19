@@ -21,14 +21,16 @@ public class BasketTest {
         Basket basket = new Basket();
         basket.addApples(1);
         basket.addBottlesOfMilk(2);
+        basket.addTinsOfSoup(3);
 
         BasketPricing actualBasketPricing = basket.getBasketPricing();
 
         assertThat(actualBasketPricing, Matchers.equalTo(new BasketPricing(
-                2.70,
+                4.65,
                 asList(
                         new BasketPosition(1, "apple"),
-                        new BasketPosition(2, "bottles of milk")
+                        new BasketPosition(2, "bottles of milk"),
+                        new BasketPosition(3, "tins of soup")
                 ))));
     }
 }

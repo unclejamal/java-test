@@ -30,6 +30,9 @@ public class BuyCommand {
         } else if (product.equals("bottle of milk") || product.equals("bottles of milk")) {
             basket.addBottlesOfMilk(quantity);
 
+        } else if (product.equals("tin of soup") || product.equals("tins of soup")) {
+            basket.addTinsOfSoup(quantity);
+
         } else {
             String missingItem = quantity + " " + product;
             commandLineOutput.showLine("Henry's Groceries doesn't have \"" + missingItem + "\" at this point. Anything else we can help with?");

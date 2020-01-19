@@ -91,12 +91,13 @@ public class EndToEndTest {
     }
 
     @Test
-    public void priceMixedBasketWithOneAppleAndOneBottleOfMilk() throws Exception {
+    public void priceMixedBasket() throws Exception {
         enter("buy 1 apple");
         enter("buy 1 bottle of milk");
+        enter("buy 1 tin of soup");
         enter("price");
-        assertOutputLines("Total cost: £1.40",
-                "Basket content: 1 apple, 1 bottle of milk");
+        assertOutputLines("Total cost: £2.05",
+                "Basket content: 1 apple, 1 bottle of milk, 1 tin of soup");
         enter("quit");
     }
 
