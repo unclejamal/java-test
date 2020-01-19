@@ -15,12 +15,12 @@ public class Basket {
         bottlesOfMilk += bottles;
     }
 
-    public double getTotalCost() {
+    private double getTotalCost() {
         return 0.10d * apples + 1.30d * bottlesOfMilk;
     }
 
-    public String getContent() {
-        List<String> basketContent = new ArrayList<>();
+    private List<BasketPosition> getBasketPositions() {
+        List<BasketPosition> basketPositions = new ArrayList<>();
 
         if (apples > 0) {
             String product = "apple";
@@ -28,7 +28,7 @@ public class Basket {
                 product = "apples";
             }
 
-            basketContent.add(String.format("%d %s", apples, product));
+            basketPositions.add(new BasketPosition(apples, product));
         }
 
         if (bottlesOfMilk > 0) {
@@ -37,10 +37,16 @@ public class Basket {
                 product = "bottles of milk";
             }
 
-            basketContent.add(String.format("%d %s", bottlesOfMilk, product));
+            basketPositions.add(new BasketPosition(bottlesOfMilk, product));
         }
 
-        if (basketContent.isEmpty()) return "<empty>";
-        return String.join(", ", basketContent);
+        return basketPositions;
+    }
+
+    public BasketPricing getBasketPricing() {
+        return new BasketPricing(
+                getTotalCost(),
+                getBasketPositions()
+        );
     }
 }

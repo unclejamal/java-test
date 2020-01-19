@@ -1,37 +1,34 @@
 package shop;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 public class BasketTest {
 
     @Test
-    public void totalCostForEmptyBasket() {
+    public void priceEmptyBasket() {
         Basket basket = new Basket();
-        assertThat(basket.getTotalCost(), equalTo(0.00d));
+        assertThat(basket.getBasketPricing(), equalTo(new BasketPricing(0.0d, emptyList())));
     }
 
     @Test
-    public void totalCostForMixedBasketOfOneAppleAndTwoBottlesOfMilk() {
+    public void priceMixedBasketOfOneAppleAndTwoBottlesOfMilk() {
         Basket basket = new Basket();
         basket.addApples(1);
         basket.addBottlesOfMilk(2);
-        assertThat(basket.getTotalCost(), equalTo(2.70d));
-    }
 
-    @Test
-    public void contentOfEmptyBasket() {
-        Basket basket = new Basket();
-        assertThat(basket.getContent(), equalTo("<empty>"));
-    }
+        BasketPricing actualBasketPricing = basket.getBasketPricing();
 
-    @Test
-    public void contentOfMixedBasketOfOneAppleAndTwoBottlesOfMilk() {
-        Basket basket = new Basket();
-        basket.addApples(1);
-        basket.addBottlesOfMilk(2);
-        assertThat(basket.getContent(), equalTo("1 apple, 2 bottles of milk"));
+        assertThat(actualBasketPricing, Matchers.equalTo(new BasketPricing(
+                2.70,
+                asList(
+                        new BasketPosition(1, "apple"),
+                        new BasketPosition(2, "bottles of milk")
+                ))));
     }
 }

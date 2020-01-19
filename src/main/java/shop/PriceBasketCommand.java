@@ -10,7 +10,7 @@ public class PriceBasketCommand {
     }
 
     public void handlePriceBasket(Basket basket) {
-        commandLineOutput.showLine(String.format("Total cost: £%.2f", basket.getTotalCost()));
-        commandLineOutput.showLine(String.format("Basket content: %s", basket.getContent()));
+        BasketPricing summary = basket.getBasketPricing();
+        commandLineOutput.showBasketPricing(summary);
     }
 }
