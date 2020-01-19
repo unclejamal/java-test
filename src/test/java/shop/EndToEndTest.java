@@ -41,7 +41,6 @@ public class EndToEndTest {
 
     @After
     public void waitForTheAppToTerminate() throws Exception {
-        System.out.println("Tearing down start");
         shoppingApplicationThread.join(1000);
         if (shoppingApplicationThread.isAlive()) {
             shoppingApplicationThread.interrupt();
