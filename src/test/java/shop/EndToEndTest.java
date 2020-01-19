@@ -100,6 +100,13 @@ public class EndToEndTest {
         enter("quit");
     }
 
+    @Test
+    public void buyNonExistingProduct() throws Exception {
+        enter("buy 1 nonExistingProduct");
+        assertOutputLines("Henry's Groceries doesn't have \"nonExistingProduct\" at this point. Anything else we can help with?");
+        enter("quit");
+    }
+
     private void enter(String command) throws IOException {
         read(CommandLineOutput.PROMPT);
         inWriter.println(command);

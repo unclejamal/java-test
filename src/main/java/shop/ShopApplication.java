@@ -49,6 +49,9 @@ public class ShopApplication implements Runnable {
 
         } else if (command.equals("buy 1 bottle of milk")) {
             basket.addBottlesOfMilk(1);
+
+        } else {
+            commandLineOutput.showLine("Henry's Groceries doesn't have \"nonExistingProduct\" at this point. Anything else we can help with?");
         }
     }
 
