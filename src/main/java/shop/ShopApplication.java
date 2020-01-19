@@ -20,6 +20,8 @@ public class ShopApplication implements Runnable {
 
         while (true) {
             try {
+                commandLineOutput.showPrompt();
+
                 String command = reader.readLine();
                 if (command.equals("quit")) {
                     break;
@@ -34,7 +36,7 @@ public class ShopApplication implements Runnable {
                     if (basket.getApples() != 1) {
                         product = "apples";
                     }
-                    commandLineOutput.showLine(String.format("Total cost: £%.2f (for basket with: %d " + product + ")%n", totalCost, basket.getApples()));
+                    commandLineOutput.showLine(String.format("Total cost: £%.2f (for basket with: %d " + product + ")", totalCost, basket.getApples()));
 
                 } else {
                     commandLineOutput.showLine("Unknown command");

@@ -3,9 +3,13 @@ package shop;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import shop.cli.CommandLineOutput;
 
 import java.io.*;
 
+import static java.lang.System.lineSeparator;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 
 public class EndToEndTest {
@@ -64,19 +68,22 @@ public class EndToEndTest {
         enter("quit");
     }
 
-    private void enter(String command) {
+    private void enter(String command) throws IOException {
+        read(CommandLineOutput.PROMPT);
         inWriter.println(command);
     }
 
     private void assertOutputLines(String... expectedOutput) throws IOException {
         for (String line : expectedOutput) {
-            read(line);
+            read(line + lineSeparator());
         }
     }
 
-    private void read(String expectedLine) throws IOException {
-        String actualLine = outReader.readLine();
-        assertEquals(expectedLine, actualLine);
+    private void read(String expectedOutput) throws IOException {
+        int length = expectedOutput.length();
+        char[] buffer = new char[length];
+        outReader.read(buffer, 0, length);
+        assertThat(String.valueOf(buffer), is(expectedOutput));
     }
 
 }
