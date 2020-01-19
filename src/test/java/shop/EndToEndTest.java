@@ -56,9 +56,10 @@ public class EndToEndTest {
         enter("buy 2 apples");
         enter("buy 1 bottle of milk");
         enter("buy 3 tins of soup");
+        enter("buy 1 loaf of bread");
         enter("price");
-        assertOutputLines("Total cost: £3.55",
-                "Basket content: 3 apples, 1 bottle of milk, 3 tins of soup");
+        assertOutputLines("Total cost: £4.35",
+                "Basket content: 3 apples, 1 bottle of milk, 1 loaf of bread, 3 tins of soup");
         enter("quit");
     }
 

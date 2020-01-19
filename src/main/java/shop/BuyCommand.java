@@ -36,7 +36,6 @@ public class BuyCommand {
         } else {
             String missingItem = quantity + " " + product;
             commandLineOutput.showLine("Henry's Groceries doesn't have \"" + missingItem + "\" at this point. Anything else we can help with?");
-
         }
     }
 }
