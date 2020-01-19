@@ -1,6 +1,7 @@
 package shop;
 
 import shop.cli.CommandLineOutput;
+import shop.cli.ProductMetadata;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,13 +26,13 @@ public class BuyCommand {
 
 
         if (product.equals("apple") || product.equals("apples")) {
-            basket.addApples(quantity);
+            basket.addProduct(quantity, new ProductMetadata("apple", "apples", 0.10d));
 
         } else if (product.equals("bottle of milk") || product.equals("bottles of milk")) {
-            basket.addBottlesOfMilk(quantity);
+            basket.addProduct(quantity, new ProductMetadata("bottle of milk", "bottles of milk", 1.30d));
 
         } else if (product.equals("tin of soup") || product.equals("tins of soup")) {
-            basket.addTinsOfSoup(quantity);
+            basket.addProduct(quantity, new ProductMetadata("tin of soup", "tins of soup", 0.65d));
 
         } else {
             String missingItem = quantity + " " + product;

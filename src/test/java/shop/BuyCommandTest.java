@@ -3,6 +3,7 @@ package shop;
 import org.junit.Test;
 import org.mockito.Mockito;
 import shop.cli.CommandLineOutput;
+import shop.cli.ProductMetadata;
 
 import static org.mockito.Mockito.verify;
 
@@ -33,37 +34,37 @@ public class BuyCommandTest {
     @Test
     public void buyOneApple() {
         buyCommand.handleBuy(basket, "buy 1 apple");
-        verify(basket).addApples(1);
+        verify(basket).addProduct(1, new ProductMetadata("apple", "apples", 0.10d));
     }
 
     @Test
     public void buyTwoApples() {
         buyCommand.handleBuy(basket, "buy 2 apples");
-        verify(basket).addApples(2);
+        verify(basket).addProduct(2, new ProductMetadata("apple", "apples", 0.10d));
     }
 
     @Test
     public void buyOneBottleOfMilk() {
         buyCommand.handleBuy(basket, "buy 1 bottle of milk");
-        verify(basket).addBottlesOfMilk(1);
+        verify(basket).addProduct(1, new ProductMetadata("bottle of milk", "bottles of milk", 1.30d));
     }
 
     @Test
     public void buyTwoBottlesOfMilk() {
         buyCommand.handleBuy(basket, "buy 2 bottles of milk");
-        verify(basket).addBottlesOfMilk(2);
+        verify(basket).addProduct(2, new ProductMetadata("bottle of milk", "bottles of milk", 1.30d));
     }
 
     @Test
     public void buyOneTinOfSoup() {
         buyCommand.handleBuy(basket, "buy 1 tin of soup");
-        verify(basket).addTinsOfSoup(1);
+        verify(basket).addProduct(1, new ProductMetadata("tin of soup", "tins of soup", 0.65d));
     }
 
     @Test
     public void buyTwoTinsOfSoup() {
         buyCommand.handleBuy(basket, "buy 2 tins of soup");
-        verify(basket).addTinsOfSoup(2);
+        verify(basket).addProduct(2, new ProductMetadata("tin of soup", "tins of soup", 0.65d));
     }
 
 

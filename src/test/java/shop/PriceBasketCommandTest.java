@@ -27,8 +27,8 @@ public class PriceBasketCommandTest {
     @Test
     public void nonEmptyBasket() {
         Set<BasketPosition> basketContent = new HashSet<>(asList(
-                new BasketPosition(1, new ProductMetadata("apple", "apples")),
-                new BasketPosition(3, new ProductMetadata("car", "cars"))
+                new BasketPosition(1, new ProductMetadata("apple", "apples", 0.10d)),
+                new BasketPosition(3, new ProductMetadata("car", "cars", 1000.0d))
         ));
         BasketPricing basketPricing = new BasketPricing(1.55d, basketContent);
         when(basket.getBasketPricing()).thenReturn(basketPricing);
