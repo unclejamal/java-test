@@ -27,4 +27,18 @@ public class BasketTest {
         basket.addApples(2);
         assertThat(basket.getApples(), equalTo(3));
     }
+
+    @Test
+    public void totalCostForEmptyBasket() {
+        Basket basket = new Basket();
+        assertThat(basket.getTotalCost(), equalTo(0.00d));
+    }
+
+    @Test
+    public void totalCostForMixedBasketOfOneAppleAndTwoBottlesOfMilk() {
+        Basket basket = new Basket();
+        basket.addApples(1);
+        basket.addBottlesOfMilk(2);
+        assertThat(basket.getTotalCost(), equalTo(2.70d));
+    }
 }
