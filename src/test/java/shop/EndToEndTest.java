@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import shop.cli.CommandLineOutput;
+import shop.cli.ProductMetadata;
 
 import java.io.*;
 
@@ -24,7 +25,16 @@ public class EndToEndTest {
         PipedInputStream outStream = new PipedInputStream();
         outReader = new BufferedReader(new InputStreamReader(outStream));
 
-        shoppingApplicationThread = new Main().createShoppingApplicationThread(new PipedInputStream(inStream), new PipedOutputStream(outStream));
+        shoppingApplicationThread = new Main().createShoppingApplicationThread(
+                new PipedInputStream(inStream),
+                new PipedOutputStream(outStream),
+                new ProductCatalog(
+                        new ProductMetadata("apple", "apples", 0.10d),
+                        new ProductMetadata("bottle of milk", "bottles of milk", 1.30d),
+                        new ProductMetadata("tin of soup", "tins of soup", 0.65d),
+                        new ProductMetadata("loaf of bread", "loafs of bread", 0.80d)
+                )
+        );
         shoppingApplicationThread.start();
     }
 
