@@ -1,18 +1,17 @@
 package shop;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public class Main {
 
     public static void main(String[] args) {
-        new Main().createShoppingApplicationThread(System.in).start();
+        new Main().createShoppingApplicationThread(System.in, System.out).start();
     }
 
-    public Thread createShoppingApplicationThread(InputStream in) {
+    public Thread createShoppingApplicationThread(InputStream in, OutputStream out) {
         ShopApplication shopApplication = new ShopApplication(
-                new BufferedReader(new InputStreamReader(in))
+                new BufferedReader(new InputStreamReader(in)),
+                new PrintWriter(out, true)
         );
 
         return new Thread(shopApplication);
