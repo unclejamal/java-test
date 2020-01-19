@@ -36,18 +36,13 @@ public class ShopApplication implements Runnable {
                     new PriceBasketCommand(commandLineOutput).handlePriceBasket(basket);
 
                 } else {
-                    handleUnknownCommand();
+                    commandLineOutput.warnCommandIsUnknown();
                 }
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-    }
-
-
-    private void handleUnknownCommand() {
-        commandLineOutput.showLine("Unknown command");
     }
 
 }

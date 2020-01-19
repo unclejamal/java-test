@@ -21,7 +21,7 @@ public class BuyCommand {
         Matcher matcher = pattern.matcher(command);
         boolean isFound = matcher.find();
         if (!isFound) {
-            commandLineOutput.showLine("Could you please enter the quantity followed by the name of the product, e.g. \"buy 1 apple\"");
+            commandLineOutput.askToCorrectTheBuyCommand();
             return;
         }
         int quantity = Integer.valueOf(matcher.group(1));
@@ -34,7 +34,7 @@ public class BuyCommand {
 
         } else {
             String missingItem = quantity + " " + product;
-            commandLineOutput.showLine("Henry's Groceries doesn't have \"" + missingItem + "\" at this point. Anything else we can help with?");
+            commandLineOutput.warnItemIsMissing(missingItem);
         }
     }
 }

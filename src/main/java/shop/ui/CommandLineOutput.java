@@ -22,20 +22,28 @@ public class CommandLineOutput {
         writer.flush();
     }
 
-    public void showLine(String line) {
-        writer.println(line);
+    public void showBasketPricing(BasketPricing basketPricing) {
+        writer.println(String.format("Total cost: £%.2f", basketPricing.totalCost));
+        writer.println(String.format("Basket content: %s", getJoin(basketPricing)));
     }
 
-    public void showBasketPricing(BasketPricing basketPricing) {
-        showLine(String.format("Total cost: £%.2f", basketPricing.totalCost));
-        showLine(String.format("Basket content: %s", getJoin(basketPricing)));
+    public void warnItemIsMissing(String missingItem) {
+        writer.println("Henry's Groceries doesn't have \"" + missingItem + "\" at this point. Anything else we can help with?");
+    }
+
+    public void askToCorrectTheBuyCommand() {
+        writer.println("Could you please enter the quantity followed by the name of the product, e.g. \"buy 1 apple\"");
+    }
+
+    public void warnCommandIsUnknown() {
+        writer.println("Unknown command");
     }
 
     private String getJoin(BasketPricing basketPricing) {
         if (basketPricing.isEmptyBasket()) {
             return "<empty>";
         }
-        
+
         return basketPricing.basketPositions.stream()
                 .sorted(Comparator.comparing(basketPosition -> basketPosition.productMetadata.singularName))
                 .map(CommandLineOutput::asString)

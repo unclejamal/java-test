@@ -22,19 +22,19 @@ public class BuyCommandTest {
     @Test
     public void buyWithoutQuantity() {
         buyCommand.handleBuy(basket, "buy stuff");
-        verify(commandLineOutput).showLine("Could you please enter the quantity followed by the name of the product, e.g. \"buy 1 apple\"");
+        verify(commandLineOutput).askToCorrectTheBuyCommand();
     }
 
     @Test
     public void buyWithoutProduct() {
         buyCommand.handleBuy(basket, "buy 1");
-        verify(commandLineOutput).showLine("Could you please enter the quantity followed by the name of the product, e.g. \"buy 1 apple\"");
+        verify(commandLineOutput).askToCorrectTheBuyCommand();
     }
 
     @Test
     public void buyOneNonExistingProduct() {
         buyCommand.handleBuy(basket, "buy 1 moon");
-        verify(commandLineOutput).showLine("Henry's Groceries doesn't have \"1 moon\" at this point. Anything else we can help with?");
+        verify(commandLineOutput).warnItemIsMissing("1 moon");
     }
 
     @Test
