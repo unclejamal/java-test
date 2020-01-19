@@ -4,8 +4,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import shop.cli.CommandLineOutput;
-import shop.cli.ProductMetadata;
+import shop.main.Main;
+import shop.ui.CommandLineOutput;
 
 import java.io.*;
 

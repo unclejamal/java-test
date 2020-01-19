@@ -2,8 +2,7 @@ package shop;
 
 import org.junit.Test;
 import org.mockito.Mockito;
-import shop.cli.CommandLineOutput;
-import shop.cli.ProductMetadata;
+import shop.ui.CommandLineOutput;
 
 import java.util.HashSet;
 import java.util.Set;

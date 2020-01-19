@@ -1,6 +1,6 @@
 package shop;
 
-import shop.cli.CommandLineOutput;
+import shop.ui.CommandLineOutput;
 
 import java.io.BufferedReader;
 import java.io.IOException;

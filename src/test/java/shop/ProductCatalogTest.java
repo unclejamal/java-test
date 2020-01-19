@@ -1,7 +1,6 @@
 package shop;
 
 import org.junit.Test;
-import shop.cli.ProductMetadata;
 
 import java.util.Optional;
 

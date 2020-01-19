@@ -1,7 +1,8 @@
-package shop.cli;
+package shop.ui;
 
 import shop.BasketPosition;
 import shop.BasketPricing;
+import shop.ProductMetadata;
 
 import java.io.PrintWriter;
 import java.util.Comparator;

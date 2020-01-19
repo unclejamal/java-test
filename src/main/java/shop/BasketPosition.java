@@ -1,7 +1,5 @@
 package shop;
 
-import shop.cli.ProductMetadata;
-
 public class BasketPosition extends ValueObject {
 
     public int quantity;

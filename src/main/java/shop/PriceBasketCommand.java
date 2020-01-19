@@ -1,6 +1,6 @@
 package shop;
 
-import shop.cli.CommandLineOutput;
+import shop.ui.CommandLineOutput;
 
 public class PriceBasketCommand {
     private CommandLineOutput commandLineOutput;

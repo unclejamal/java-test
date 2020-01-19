@@ -1,6 +1,4 @@
-package shop.cli;
-
-import shop.ValueObject;
+package shop;
 
 public class ProductMetadata extends ValueObject {
     public final String singularName;

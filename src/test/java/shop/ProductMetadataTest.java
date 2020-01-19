@@ -1,4 +1,4 @@
-package shop.cli;
+package shop;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;

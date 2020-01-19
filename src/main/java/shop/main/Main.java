@@ -1,7 +1,9 @@
-package shop;
+package shop.main;
 
-import shop.cli.CommandLineOutput;
-import shop.cli.ProductMetadata;
+import shop.ProductCatalog;
+import shop.ProductMetadata;
+import shop.ShopApplication;
+import shop.ui.CommandLineOutput;
 
 import java.io.*;
 

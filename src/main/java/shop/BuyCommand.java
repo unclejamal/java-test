@@ -1,7 +1,6 @@
 package shop;
 
-import shop.cli.CommandLineOutput;
-import shop.cli.ProductMetadata;
+import shop.ui.CommandLineOutput;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
