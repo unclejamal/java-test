@@ -15,7 +15,8 @@ public class ShopApplication implements Runnable {
 
     @Override
     public void run() {
-        int applesBought = 0;
+        Basket basket = new Basket();
+
         while (true) {
             try {
                 String command = reader.readLine();
@@ -24,15 +25,15 @@ public class ShopApplication implements Runnable {
                 }
 
                 if (command.equals("buy 1 apple")) {
-                    applesBought++;
+                    basket.addApples(1);
 
                 } else if (command.equals("price")) {
-                    double totalCost = 0.10 * applesBought;
+                    double totalCost = 0.10 * basket.getApples();
                     String product = "apple";
-                    if (applesBought != 1) {
+                    if (basket.getApples() != 1) {
                         product = "apples";
                     }
-                    writer.printf("Total cost: £%.2f (for basket with: %d " + product + ")%n", totalCost, applesBought);
+                    writer.printf("Total cost: £%.2f (for basket with: %d " + product + ")%n", totalCost, basket.getApples());
 
                 } else {
                     writer.println("Unknown command");
@@ -43,4 +44,5 @@ public class ShopApplication implements Runnable {
             }
         }
     }
+
 }
