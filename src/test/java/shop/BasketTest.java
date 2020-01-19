@@ -4,7 +4,6 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 import shop.cli.ProductMetadata;
 
-import java.util.Collections;
 import java.util.HashSet;
 
 import static java.util.Arrays.asList;
@@ -16,7 +15,7 @@ public class BasketTest {
     @Test
     public void priceEmptyBasket() {
         Basket basket = new Basket();
-        assertThat(basket.getBasketPricing(), equalTo(new BasketPricing(0.0d, Collections.emptySet())));
+        assertThat(basket.getBasketPricing(), equalTo(BasketPricing.EMPTY_BASKET_PRICING));
     }
 
     @Test
