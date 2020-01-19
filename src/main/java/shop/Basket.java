@@ -15,14 +15,6 @@ public class Basket {
         bottlesOfMilk += bottles;
     }
 
-    public int getApples() {
-        return apples;
-    }
-
-    public int getBottlesOfMilk() {
-        return bottlesOfMilk;
-    }
-
     public double getTotalCost() {
         return 0.10d * apples + 1.30d * bottlesOfMilk;
     }
