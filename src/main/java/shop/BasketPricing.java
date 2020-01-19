@@ -14,4 +14,8 @@ public class BasketPricing extends ValueObject {
         this.totalCost = totalCost;
         this.basketPositions = basketPositions;
     }
+
+    public boolean isEmptyBasket() {
+        return basketPositions.isEmpty();
+    }
 }

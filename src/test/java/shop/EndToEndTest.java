@@ -80,6 +80,14 @@ public class EndToEndTest {
         enter("quit");
     }
 
+    @Test
+    public void priceEmptyBasket() throws Exception {
+        enter("price");
+        assertOutputLines("Total cost: £0.00",
+                "Basket content: <empty>");
+        enter("quit");
+    }
+
     private void enter(String command) throws IOException {
         read(CommandLineOutput.PROMPT);
         inWriter.println(command);

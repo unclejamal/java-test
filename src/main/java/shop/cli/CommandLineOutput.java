@@ -31,6 +31,10 @@ public class CommandLineOutput {
     }
 
     private String getJoin(BasketPricing basketPricing) {
+        if (basketPricing.isEmptyBasket()) {
+            return "<empty>";
+        }
+        
         return basketPricing.basketPositions.stream()
                 .sorted(Comparator.comparing(basketPosition -> basketPosition.productMetadata.singularName))
                 .map(CommandLineOutput::asString)
