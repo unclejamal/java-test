@@ -1,6 +1,5 @@
 package shop;
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -25,11 +24,22 @@ public class BasketTest {
 
         BasketPricing actualBasketPricing = basket.getBasketPricing();
 
-        assertThat(actualBasketPricing, Matchers.equalTo(new BasketPricing(
+        assertThat(actualBasketPricing, equalTo(new BasketPricing(
                 2.7,
                 new HashSet<>(asList(
                         new BasketPosition(1, new ProductMetadata("apple", "apples", 0.10d)),
                         new BasketPosition(2, new ProductMetadata("bottle of milk", "bottles of milk", 1.30d))
                 )))));
+    }
+
+    @Test
+    public void countProduct() {
+        ProductMetadata apple = new ProductMetadata("apple", "apples", 0.10d);
+        Basket basket = new Basket();
+        basket.addProduct(10, apple);
+
+        int count = basket.countProduct(apple);
+
+        assertThat(count, equalTo(10));
     }
 }

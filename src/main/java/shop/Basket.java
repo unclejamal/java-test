@@ -30,4 +30,8 @@ public class Basket {
                 getBasketPositions()
         );
     }
+
+    public int countProduct(ProductMetadata productMetadata) {
+        return quantities.get(productMetadata);
+    }
 }
