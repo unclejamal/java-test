@@ -5,9 +5,12 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import shop.main.Main;
+import shop.time.DateRange;
+import shop.time.FrozenClock;
 import shop.ui.CommandLineOutput;
 
 import java.io.*;
+import java.time.LocalDate;
 
 import static java.lang.System.lineSeparator;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,6 +18,7 @@ import static org.hamcrest.Matchers.is;
 
 public class EndToEndTest {
 
+    private FrozenClock frozenClock;
     private PrintWriter inWriter;
     private BufferedReader outReader;
     private Thread shoppingApplicationThread;
@@ -38,9 +42,22 @@ public class EndToEndTest {
                 loafOfBread
         );
 
+        frozenClock = new FrozenClock();
+        frozenClock.setTodayTo(LocalDate.of(2020, 1, 20));
+
         DiscountingProcess discountingProcess = new DiscountingProcess(
-                new BuyTwoGetOneForHalfPriceDiscount(tinOfSoup, loafOfBread)
+                new TimeLimitedDiscount(
+                        frozenClock,
+                        new DateRange(LocalDate.of(2020, 1, 19), LocalDate.of(2020, 1, 26)),
+                        new BuyTwoGetOneForHalfPriceDiscount(tinOfSoup, loafOfBread)
+                ),
+                new TimeLimitedDiscount(
+                        frozenClock,
+                        new DateRange(LocalDate.of(2020, 1, 23), LocalDate.of(2020, 2, 29)),
+                        new SingleProductByPercentageDiscount(apple, 10)
+                )
         );
+
 
         shoppingApplicationThread = new Main().createShoppingApplicationThread(
                 new PipedInputStream(inStream),
@@ -106,8 +123,9 @@ public class EndToEndTest {
     }
 
     @Test
-    @Ignore("WIP: Add support for in 5 days time")
     public void acceptanceTest_6ApplesAndABottleOfMilkBoughtIn5DaysTime() throws Exception {
+        frozenClock.setTodayTo(LocalDate.of(2020, 1, 25));
+
         enter("buy 6 apples");
         enter("buy 1 bottle of milk");
         enter("price");

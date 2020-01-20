@@ -1,13 +1,21 @@
 package shop;
 
-public class DiscountingProcess {
-    private Discount discount;
+import java.util.List;
 
-    public DiscountingProcess(Discount discount) {
-        this.discount = discount;
+import static java.util.Arrays.asList;
+
+public class DiscountingProcess {
+    private List<Discount> discounts;
+
+    public DiscountingProcess(Discount... discounts) {
+        this.discounts = asList(discounts);
     }
 
     public void applyTo(Basket basket) {
-        basket.addDiscountForValueOf(discount.applyTo(basket));
+        double totalDiscount = discounts.stream()
+                .mapToDouble(discount -> discount.applyTo(basket))
+                .sum();
+
+        basket.addDiscountForValueOf(totalDiscount);
     }
 }

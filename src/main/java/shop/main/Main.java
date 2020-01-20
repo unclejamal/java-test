@@ -1,13 +1,21 @@
 package shop.main;
 
 import shop.*;
+import shop.time.Clock;
+import shop.time.DateRange;
+import shop.time.SystemClock;
 import shop.ui.CommandLineOutput;
 
 import java.io.*;
+import java.time.LocalDate;
+
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 
 public class Main {
 
     public static void main(String[] args) {
+        Clock clock = new SystemClock();
+
         ProductMetadata apple = new ProductMetadata("apple", "apples", 0.10d);
         ProductMetadata bottleOfMilk = new ProductMetadata("bottle of milk", "bottles of milk", 1.30d);
         ProductMetadata tinOfSoup = new ProductMetadata("tin of soup", "tins of soup", 0.65d);
@@ -21,7 +29,16 @@ public class Main {
         );
 
         DiscountingProcess discountingProcess = new DiscountingProcess(
-                new BuyTwoGetOneForHalfPriceDiscount(tinOfSoup, loafOfBread)
+                new TimeLimitedDiscount(
+                        clock,
+                        new DateRange(LocalDate.now().minusDays(1), LocalDate.now().plusDays(6)),
+                        new BuyTwoGetOneForHalfPriceDiscount(tinOfSoup, loafOfBread)
+                ),
+                new TimeLimitedDiscount(
+                        clock,
+                        new DateRange(LocalDate.now().plusDays(3), LocalDate.now().plusMonths(1).with(lastDayOfMonth())),
+                        new SingleProductByPercentageDiscount(apple, 10)
+                )
         );
 
         new Main().createShoppingApplicationThread(
