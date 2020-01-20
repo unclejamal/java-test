@@ -2,7 +2,6 @@ package shop;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import shop.main.Main;
 import shop.time.DateRange;
@@ -135,8 +134,9 @@ public class EndToEndTest {
     }
 
     @Test
-    @Ignore("WIP: Add support for in 5 days time")
     public void acceptanceTest_3ApplesAnd2TinsOfSoupAndALoafOfBreadBoughtIn5DaysTime() throws Exception {
+        frozenClock.setTodayTo(LocalDate.of(2020, 1, 25));
+
         enter("buy 3 apples");
         enter("buy 2 tins of soup");
         enter("buy 1 loaf of bread");
