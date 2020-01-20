@@ -34,4 +34,8 @@ public class Basket {
     public int countProduct(ProductMetadata productMetadata) {
         return quantities.get(productMetadata);
     }
+
+    public void addDiscountForValueOf(double discountValue) {
+
+    }
 }

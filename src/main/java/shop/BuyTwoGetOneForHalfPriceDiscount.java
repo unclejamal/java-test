@@ -1,6 +1,6 @@
 package shop;
 
-public class BuyTwoGetOneForHalfPriceDiscount {
+public class BuyTwoGetOneForHalfPriceDiscount implements Discount {
     private final ProductMetadata buyTwoProduct;
     private final ProductMetadata halfPriceProduct;
 
@@ -9,6 +9,7 @@ public class BuyTwoGetOneForHalfPriceDiscount {
         this.halfPriceProduct = halfPriceProduct;
     }
 
+    @Override
     public double applyTo(Basket basket) {
         int buyTwoProductCount = basket.countProduct(buyTwoProduct);
         int halfPriceProductCount = basket.countProduct(halfPriceProduct);
