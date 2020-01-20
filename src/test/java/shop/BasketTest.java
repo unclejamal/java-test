@@ -42,4 +42,14 @@ public class BasketTest {
 
         assertThat(count, equalTo(10));
     }
+
+    @Test
+    public void countMissingProduct() {
+        ProductMetadata apple = new ProductMetadata("apple", "apples", 0.10d);
+        Basket basket = new Basket();
+
+        int count = basket.countProduct(apple);
+
+        assertThat(count, equalTo(0));
+    }
 }
