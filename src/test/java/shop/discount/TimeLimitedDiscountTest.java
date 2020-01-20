@@ -1,7 +1,8 @@
-package shop;
+package shop.discount;
 
 import org.junit.Test;
 import org.mockito.Mockito;
+import shop.Basket;
 import shop.time.Clock;
 import shop.time.DateRange;
 

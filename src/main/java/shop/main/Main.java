@@ -1,6 +1,12 @@
 package shop.main;
 
-import shop.*;
+import shop.ProductCatalog;
+import shop.ProductMetadata;
+import shop.ShopApplication;
+import shop.discount.BuyTwoGetOneForHalfPriceDiscount;
+import shop.discount.DiscountingProcess;
+import shop.discount.SingleProductByPercentageDiscount;
+import shop.discount.TimeLimitedDiscount;
 import shop.time.Clock;
 import shop.time.DateRange;
 import shop.time.SystemClock;

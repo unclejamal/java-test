@@ -1,5 +1,6 @@
-package shop;
+package shop.discount;
 
+import shop.Basket;
 import shop.time.Clock;
 import shop.time.DateRange;
 

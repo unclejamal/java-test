@@ -1,4 +1,7 @@
-package shop;
+package shop.discount;
+
+import shop.Basket;
+import shop.ProductMetadata;
 
 public class SingleProductByPercentageDiscount implements Discount {
 

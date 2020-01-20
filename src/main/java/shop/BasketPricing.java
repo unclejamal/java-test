@@ -1,5 +1,7 @@
 package shop;
 
+import shop.util.ValueObject;
+
 import java.util.HashSet;
 import java.util.Set;
 

@@ -1,6 +1,8 @@
-package shop;
+package shop.discount;
 
 import org.junit.Test;
+import shop.Basket;
+import shop.ProductMetadata;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;

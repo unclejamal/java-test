@@ -1,4 +1,6 @@
-package shop;
+package shop.discount;
+
+import shop.Basket;
 
 import java.util.List;
 

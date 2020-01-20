@@ -1,5 +1,7 @@
 package shop;
 
+import shop.util.ValueObject;
+
 public class ProductMetadata extends ValueObject {
     public final String singularName;
     public final String pluralName;

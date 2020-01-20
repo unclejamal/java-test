@@ -1,5 +1,7 @@
 package shop;
 
+import shop.util.ValueObject;
+
 public class BasketPosition extends ValueObject {
 
     public int quantity;

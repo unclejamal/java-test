@@ -1,5 +1,6 @@
 package shop;
 
+import shop.discount.DiscountingProcess;
 import shop.ui.CommandLineOutput;
 
 public class PriceBasketCommand {
