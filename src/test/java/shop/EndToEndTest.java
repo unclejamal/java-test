@@ -26,15 +26,27 @@ public class EndToEndTest {
         PipedInputStream outStream = new PipedInputStream();
         outReader = new BufferedReader(new InputStreamReader(outStream));
 
+        ProductMetadata apple = new ProductMetadata("apple", "apples", 0.10d);
+        ProductMetadata bottleOfMilk = new ProductMetadata("bottle of milk", "bottles of milk", 1.30d);
+        ProductMetadata tinOfSoup = new ProductMetadata("tin of soup", "tins of soup", 0.65d);
+        ProductMetadata loafOfBread = new ProductMetadata("loaf of bread", "loaves of bread", 0.80d);
+
+        ProductCatalog productCatalog = new ProductCatalog(
+                apple,
+                bottleOfMilk,
+                tinOfSoup,
+                loafOfBread
+        );
+
+        DiscountingProcess discountingProcess = new DiscountingProcess(
+                new BuyTwoGetOneForHalfPriceDiscount(tinOfSoup, loafOfBread)
+        );
+
         shoppingApplicationThread = new Main().createShoppingApplicationThread(
                 new PipedInputStream(inStream),
                 new PipedOutputStream(outStream),
-                new ProductCatalog(
-                        new ProductMetadata("apple", "apples", 0.10d),
-                        new ProductMetadata("bottle of milk", "bottles of milk", 1.30d),
-                        new ProductMetadata("tin of soup", "tins of soup", 0.65d),
-                        new ProductMetadata("loaf of bread", "loaves of bread", 0.80d)
-                )
+                productCatalog,
+                discountingProcess
         );
         shoppingApplicationThread.start();
     }
@@ -68,13 +80,12 @@ public class EndToEndTest {
         enter("buy 3 tins of soup");
         enter("buy 1 loaf of bread");
         enter("price");
-        assertOutputLines("Total cost: £4.35",
+        assertOutputLines("Total cost: £3.95",
                 "Basket content: 3 apples, 1 bottle of milk, 1 loaf of bread, 3 tins of soup");
         enter("quit");
     }
 
     @Test
-    @Ignore("WIP: Should be 3.15")
     public void acceptanceTest_3TinsOfSoup2LoavesOfBreadBoughtToday() throws Exception {
         enter("buy 3 tins of soup");
         enter("buy 2 loaves of bread");

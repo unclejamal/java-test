@@ -17,15 +17,16 @@ public class BasketTest {
     }
 
     @Test
-    public void priceMixedBasketOfOneAppleAndTwoBottlesOfMilk() {
+    public void priceMixedBasket() {
         Basket basket = new Basket();
         basket.addProduct(1, new ProductMetadata("apple", "apples", 0.10d));
         basket.addProduct(2, new ProductMetadata("bottle of milk", "bottles of milk", 1.30d));
+        basket.addDiscountForValueOf(0.20d);
 
         BasketPricing actualBasketPricing = basket.getBasketPricing();
 
         assertThat(actualBasketPricing, equalTo(new BasketPricing(
-                2.7,
+                2.5d,
                 new HashSet<>(asList(
                         new BasketPosition(1, new ProductMetadata("apple", "apples", 0.10d)),
                         new BasketPosition(2, new ProductMetadata("bottle of milk", "bottles of milk", 1.30d))

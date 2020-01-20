@@ -8,12 +8,13 @@ import static org.mockito.Mockito.*;
 public class PriceBasketCommandTest {
     private Basket basket = mock(Basket.class);
     private CommandLineOutput commandLineOutput = mock(CommandLineOutput.class);
-    private PriceBasketCommand command = new PriceBasketCommand(commandLineOutput);
+    private DiscountingProcess discountingProcess = mock(DiscountingProcess.class);
+    private BasketPricing basketPricing = mock(BasketPricing.class);
 
+    private PriceBasketCommand command = new PriceBasketCommand(commandLineOutput, discountingProcess);
 
     @Test
     public void passesBasketPricingToCommandLineOutput() {
-        BasketPricing basketPricing = mock(BasketPricing.class);
         when(basket.getBasketPricing()).thenReturn(basketPricing);
 
         command.handlePriceBasket(basket);

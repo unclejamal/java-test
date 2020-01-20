@@ -7,12 +7,17 @@ import java.util.stream.Collectors;
 
 public class Basket {
     private Map<ProductMetadata, Integer> quantities = new HashMap<>();
+    private double totalDiscountValue = 0.0d;
 
     public void addProduct(int quantityToBeAdded, ProductMetadata productMetadata) {
         quantities.merge(productMetadata, quantityToBeAdded, Integer::sum);
     }
 
     private double getTotalCost() {
+        return sumOfProducts() - totalDiscountValue;
+    }
+
+    private double sumOfProducts() {
         return quantities.entrySet().stream()
                 .mapToDouble(e -> e.getKey().price * e.getValue())
                 .sum();
@@ -36,6 +41,6 @@ public class Basket {
     }
 
     public void addDiscountForValueOf(double discountValue) {
-
+        totalDiscountValue += discountValue;
     }
 }

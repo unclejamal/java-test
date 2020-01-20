@@ -11,13 +11,17 @@ public class ShopApplication implements Runnable {
     private final CommandLineOutput commandLineOutput;
     private final CommandRouter commandRouter;
 
-    public ShopApplication(BufferedReader reader, CommandLineOutput commandLineOutput, ProductCatalog productCatalog) {
+    public ShopApplication(BufferedReader reader,
+                           CommandLineOutput commandLineOutput,
+                           ProductCatalog productCatalog,
+                           DiscountingProcess discountingProcess) {
+
         this.commandLineOutput = commandLineOutput;
         this.reader = reader;
         this.commandRouter = new CommandRouter(
                 commandLineOutput,
                 new BuyCommand(commandLineOutput, productCatalog),
-                new PriceBasketCommand(commandLineOutput)
+                new PriceBasketCommand(commandLineOutput, discountingProcess)
         );
     }
 
