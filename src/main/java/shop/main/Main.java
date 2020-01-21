@@ -15,7 +15,7 @@ import shop.ui.CommandLineOutput;
 import java.io.*;
 import java.time.LocalDate;
 
-import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
+import static shop.time.DateRange.dateRangeFromIn3DaysAndValidUntilTheEndOfTheFollowingMonth;
 
 public class Main {
 
@@ -27,22 +27,17 @@ public class Main {
         ProductMetadata tinOfSoup = new ProductMetadata("tin of soup", "tins of soup", 0.65d);
         ProductMetadata loafOfBread = new ProductMetadata("loaf of bread", "loaves of bread", 0.80d);
 
-        ProductCatalog productCatalog = new ProductCatalog(
-                apple,
-                bottleOfMilk,
-                tinOfSoup,
-                loafOfBread
-        );
+        ProductCatalog productCatalog = new ProductCatalog(apple, bottleOfMilk, tinOfSoup, loafOfBread);
 
         DiscountingProcess discountingProcess = new DiscountingProcess(
                 new TimeLimitedDiscount(
                         clock,
-                        new DateRange(LocalDate.now().minusDays(1), LocalDate.now().plusDays(6)),
+                        DateRange.dateRangeFromYesterdayAndValidForSevenDays(LocalDate.now()),
                         new BuyTwoGetOneForHalfPriceDiscount(tinOfSoup, loafOfBread)
                 ),
                 new TimeLimitedDiscount(
                         clock,
-                        new DateRange(LocalDate.now().plusDays(3), LocalDate.now().plusMonths(1).with(lastDayOfMonth())),
+                        dateRangeFromIn3DaysAndValidUntilTheEndOfTheFollowingMonth(LocalDate.now()),
                         new SingleProductByPercentageDiscount(apple, 10)
                 )
         );

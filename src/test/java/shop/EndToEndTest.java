@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import static java.lang.System.lineSeparator;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static shop.time.DateRange.dateRangeFromIn3DaysAndValidUntilTheEndOfTheFollowingMonth;
 
 public class EndToEndTest {
 
@@ -38,12 +39,7 @@ public class EndToEndTest {
         ProductMetadata tinOfSoup = new ProductMetadata("tin of soup", "tins of soup", 0.65d);
         ProductMetadata loafOfBread = new ProductMetadata("loaf of bread", "loaves of bread", 0.80d);
 
-        ProductCatalog productCatalog = new ProductCatalog(
-                apple,
-                bottleOfMilk,
-                tinOfSoup,
-                loafOfBread
-        );
+        ProductCatalog productCatalog = new ProductCatalog(apple, bottleOfMilk, tinOfSoup, loafOfBread);
 
         frozenClock = new FrozenClock();
         frozenClock.setTodayTo(LocalDate.of(2020, 1, 20));
@@ -51,12 +47,12 @@ public class EndToEndTest {
         DiscountingProcess discountingProcess = new DiscountingProcess(
                 new TimeLimitedDiscount(
                         frozenClock,
-                        new DateRange(LocalDate.of(2020, 1, 19), LocalDate.of(2020, 1, 26)),
+                        DateRange.dateRangeFromYesterdayAndValidForSevenDays(frozenClock.today()),
                         new BuyTwoGetOneForHalfPriceDiscount(tinOfSoup, loafOfBread)
                 ),
                 new TimeLimitedDiscount(
                         frozenClock,
-                        new DateRange(LocalDate.of(2020, 1, 23), LocalDate.of(2020, 2, 29)),
+                        dateRangeFromIn3DaysAndValidUntilTheEndOfTheFollowingMonth(frozenClock.today()),
                         new SingleProductByPercentageDiscount(apple, 10)
                 )
         );
