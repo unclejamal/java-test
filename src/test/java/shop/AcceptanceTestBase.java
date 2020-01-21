@@ -41,6 +41,8 @@ public abstract class AcceptanceTestBase {
                 applicationData
         );
         shoppingApplicationThread.start();
+
+        goPastTheWelcomeMessage();
     }
 
     @After
@@ -55,6 +57,13 @@ public abstract class AcceptanceTestBase {
     protected void enter(String command) throws IOException {
         read(CommandLineOutput.PROMPT);
         inWriter.println(command);
+    }
+
+    private void goPastTheWelcomeMessage() throws IOException {
+        String line = null;
+        while (!"".equals(line)) {
+            line = outReader.readLine();
+        }
     }
 
     protected void assertOutputLines(String... expectedOutput) throws IOException {

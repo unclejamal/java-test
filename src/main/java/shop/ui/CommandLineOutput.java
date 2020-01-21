@@ -17,6 +17,15 @@ public class CommandLineOutput {
         this.writer = writer;
     }
 
+    public void welcomeTheCustomer() {
+        writer.println("Welcome to Henry's Groceries. Here's what you can do:");
+        writer.println("- buy: e.g. \"buy 1 apple\", \"buy 2 bottles of milk\", \"buy 3 loaves of bread\", \"buy 4 tins of soup\"");
+        writer.println("- price: shows the total price of the basket");
+        writer.println("- quit: quits the shop");
+        writer.println("");
+        writer.flush();
+    }
+
     public void showPrompt() {
         writer.print(PROMPT);
         writer.flush();

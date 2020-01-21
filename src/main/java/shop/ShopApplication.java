@@ -28,9 +28,11 @@ public class ShopApplication implements Runnable {
     @Override
     public void run() {
         Basket basket = new Basket();
+        commandLineOutput.welcomeTheCustomer();
 
         while (true) {
             try {
+
                 commandLineOutput.showPrompt();
                 String userInput = reader.readLine();
 
