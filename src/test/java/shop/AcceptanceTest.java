@@ -20,7 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static shop.time.DateRange.dateRangeFromIn3DaysAndValidUntilTheEndOfTheFollowingMonth;
 
-public class EndToEndTest {
+public class AcceptanceTest {
 
     private FrozenClock frozenClock;
     private PrintWriter inWriter;
