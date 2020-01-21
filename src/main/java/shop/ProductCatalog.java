@@ -8,7 +8,7 @@ import static java.util.Arrays.asList;
 
 public class ProductCatalog {
 
-    private Set<ProductMetadata> productMetadatas;
+    private final Set<ProductMetadata> productMetadatas;
 
     public ProductCatalog(ProductMetadata... productMetadatas) {
         this.productMetadatas = new HashSet<>(asList(productMetadatas));

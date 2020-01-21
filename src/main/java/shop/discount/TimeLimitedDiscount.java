@@ -8,9 +8,9 @@ import java.time.LocalDate;
 
 public class TimeLimitedDiscount implements Discount {
 
-    private Clock clock;
-    private DateRange discountValidityRange;
-    private Discount delegateDiscount;
+    private final Clock clock;
+    private final DateRange discountValidityRange;
+    private final Discount delegateDiscount;
 
     public TimeLimitedDiscount(Clock clock, DateRange discountValidityRange, Discount delegateDiscount) {
         this.clock = clock;

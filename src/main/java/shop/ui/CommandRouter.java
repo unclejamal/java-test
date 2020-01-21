@@ -5,9 +5,9 @@ import shop.BuyCommand;
 import shop.PriceBasketCommand;
 
 public class CommandRouter {
-    private CommandLineOutput commandLineOutput;
-    private BuyCommand buyCommand;
-    private PriceBasketCommand priceBasketCommand;
+    private final CommandLineOutput commandLineOutput;
+    private final BuyCommand buyCommand;
+    private final PriceBasketCommand priceBasketCommand;
 
     public CommandRouter(CommandLineOutput commandLineOutput, BuyCommand buyCommand, PriceBasketCommand priceBasketCommand) {
         this.commandLineOutput = commandLineOutput;

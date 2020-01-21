@@ -5,7 +5,7 @@ import shop.util.ValueObject;
 public class ProductMetadata extends ValueObject {
     public final String singularName;
     public final String pluralName;
-    public double price;
+    public final double price;
 
     public ProductMetadata(String singularName, String pluralName, double price) {
         this.singularName = singularName;

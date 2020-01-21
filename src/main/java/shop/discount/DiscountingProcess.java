@@ -7,7 +7,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 
 public class DiscountingProcess {
-    private List<Discount> discounts;
+    private final List<Discount> discounts;
 
     public DiscountingProcess(Discount... discounts) {
         this.discounts = asList(discounts);
