@@ -1,6 +1,6 @@
 package shop;
 
-import shop.discount.DiscountingProcess;
+import shop.main.ApplicationData;
 import shop.ui.CommandLineOutput;
 import shop.ui.CommandRouter;
 
@@ -14,15 +14,14 @@ public class ShopApplication implements Runnable {
 
     public ShopApplication(BufferedReader reader,
                            CommandLineOutput commandLineOutput,
-                           ProductCatalog productCatalog,
-                           DiscountingProcess discountingProcess) {
+                           ApplicationData applicationData) {
 
         this.commandLineOutput = commandLineOutput;
         this.reader = reader;
         this.commandRouter = new CommandRouter(
                 commandLineOutput,
-                new BuyCommand(commandLineOutput, productCatalog),
-                new PriceBasketCommand(commandLineOutput, discountingProcess)
+                new BuyCommand(commandLineOutput, applicationData.productCatalog),
+                new PriceBasketCommand(commandLineOutput, applicationData.discountingProcess)
         );
     }
 

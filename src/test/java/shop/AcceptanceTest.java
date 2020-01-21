@@ -1,53 +1,36 @@
 package shop;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import shop.discount.BuyTwoGetOneForHalfPriceDiscount;
 import shop.discount.DiscountingProcess;
 import shop.discount.SingleProductByPercentageDiscount;
 import shop.discount.TimeLimitedDiscount;
-import shop.main.Main;
-import shop.time.DateRange;
-import shop.time.FrozenClock;
-import shop.ui.CommandLineOutput;
+import shop.main.ApplicationData;
 
-import java.io.*;
 import java.time.LocalDate;
 
-import static java.lang.System.lineSeparator;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 import static shop.time.DateRange.dateRangeFromIn3DaysAndValidUntilTheEndOfTheFollowingMonth;
+import static shop.time.DateRange.dateRangeFromYesterdayAndValidForSevenDays;
 
-public class AcceptanceTest {
+public class AcceptanceTest extends AcceptanceTestBase {
 
-    private FrozenClock frozenClock;
-    private PrintWriter inWriter;
-    private BufferedReader outReader;
-    private Thread shoppingApplicationThread;
+    @Override
+    protected LocalDate givenTodayIs() {
+        return LocalDate.of(2020, 1, 20);
+    }
 
-    @Before
-    public void startTheApp() throws Exception {
-        PipedOutputStream inStream = new PipedOutputStream();
-        inWriter = new PrintWriter(inStream, true);
-        PipedInputStream outStream = new PipedInputStream();
-        outReader = new BufferedReader(new InputStreamReader(outStream));
-
+    @Override
+    protected ApplicationData givenTheShopRunsWith() {
         ProductMetadata apple = new ProductMetadata("apple", "apples", 0.10d);
         ProductMetadata bottleOfMilk = new ProductMetadata("bottle of milk", "bottles of milk", 1.30d);
         ProductMetadata tinOfSoup = new ProductMetadata("tin of soup", "tins of soup", 0.65d);
         ProductMetadata loafOfBread = new ProductMetadata("loaf of bread", "loaves of bread", 0.80d);
-
         ProductCatalog productCatalog = new ProductCatalog(apple, bottleOfMilk, tinOfSoup, loafOfBread);
-
-        frozenClock = new FrozenClock();
-        frozenClock.setTodayTo(LocalDate.of(2020, 1, 20));
 
         DiscountingProcess discountingProcess = new DiscountingProcess(
                 new TimeLimitedDiscount(
                         frozenClock,
-                        DateRange.dateRangeFromYesterdayAndValidForSevenDays(frozenClock.today()),
+                        dateRangeFromYesterdayAndValidForSevenDays(frozenClock.today()),
                         new BuyTwoGetOneForHalfPriceDiscount(tinOfSoup, loafOfBread)
                 ),
                 new TimeLimitedDiscount(
@@ -57,23 +40,7 @@ public class AcceptanceTest {
                 )
         );
 
-
-        shoppingApplicationThread = new Main().createShoppingApplicationThread(
-                new PipedInputStream(inStream),
-                new PipedOutputStream(outStream),
-                productCatalog,
-                discountingProcess
-        );
-        shoppingApplicationThread.start();
-    }
-
-    @After
-    public void waitForTheAppToTerminate() throws Exception {
-        shoppingApplicationThread.join(1000);
-        if (shoppingApplicationThread.isAlive()) {
-            shoppingApplicationThread.interrupt();
-            throw new RuntimeException("App is still running");
-        }
+        return new ApplicationData(productCatalog, discountingProcess);
     }
 
     @Test
@@ -159,24 +126,6 @@ public class AcceptanceTest {
         assertOutputLines("Total cost: £0.00",
                 "Basket content: <empty>");
         enter("quit");
-    }
-
-    private void enter(String command) throws IOException {
-        read(CommandLineOutput.PROMPT);
-        inWriter.println(command);
-    }
-
-    private void assertOutputLines(String... expectedOutput) throws IOException {
-        for (String line : expectedOutput) {
-            read(line + lineSeparator());
-        }
-    }
-
-    private void read(String expectedOutput) throws IOException {
-        int length = expectedOutput.length();
-        char[] buffer = new char[length];
-        outReader.read(buffer, 0, length);
-        assertThat(String.valueOf(buffer), is(expectedOutput));
     }
 
 }

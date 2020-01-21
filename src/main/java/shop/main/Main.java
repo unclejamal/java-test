@@ -45,22 +45,19 @@ public class Main {
         new Main().createShoppingApplicationThread(
                 System.in,
                 System.out,
-                productCatalog,
-                discountingProcess
+                new ApplicationData(productCatalog, discountingProcess)
         ).start();
     }
 
     public Thread createShoppingApplicationThread(InputStream in,
                                                   OutputStream out,
-                                                  ProductCatalog productCatalog,
-                                                  DiscountingProcess discountingProcess) {
+                                                  ApplicationData applicationData) {
 
         PrintWriter writer = new PrintWriter(out, true);
         ShopApplication shopApplication = new ShopApplication(
                 new BufferedReader(new InputStreamReader(in)),
                 new CommandLineOutput(writer),
-                productCatalog,
-                discountingProcess
+                applicationData
         );
 
         return new Thread(shopApplication);
