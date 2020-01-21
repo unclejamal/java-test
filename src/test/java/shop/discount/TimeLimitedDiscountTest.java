@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
+import static shop.discount.Discount.NO_DISCOUNT;
 
 public class TimeLimitedDiscountTest {
 
@@ -47,6 +48,6 @@ public class TimeLimitedDiscountTest {
 
         double discountValue = discount.applyTo(basket);
 
-        assertThat(discountValue, equalTo(0.00));
+        assertThat(discountValue, equalTo(NO_DISCOUNT));
     }
 }

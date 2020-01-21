@@ -22,7 +22,7 @@ public class TimeLimitedDiscount implements Discount {
     public double applyTo(Basket basket) {
         LocalDate today = clock.today();
         if (!discountValidityRange.includes(today)) {
-            return 0.00d;
+            return NO_DISCOUNT;
         }
 
         return delegateDiscount.applyTo(basket);

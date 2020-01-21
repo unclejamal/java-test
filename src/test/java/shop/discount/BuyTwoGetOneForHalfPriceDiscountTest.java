@@ -6,6 +6,7 @@ import shop.ProductMetadata;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static shop.discount.Discount.NO_DISCOUNT;
 
 public class BuyTwoGetOneForHalfPriceDiscountTest {
 
@@ -62,7 +63,7 @@ public class BuyTwoGetOneForHalfPriceDiscountTest {
 
         double discountValue = discount.applyTo(basket);
 
-        assertThat(discountValue, equalTo(0.0d));
+        assertThat(discountValue, equalTo(NO_DISCOUNT));
     }
 
     @Test
@@ -72,7 +73,7 @@ public class BuyTwoGetOneForHalfPriceDiscountTest {
 
         double discountValue = discount.applyTo(basket);
 
-        assertThat(discountValue, equalTo(0.0d));
+        assertThat(discountValue, equalTo(NO_DISCOUNT));
     }
 
     @Test
@@ -82,6 +83,6 @@ public class BuyTwoGetOneForHalfPriceDiscountTest {
 
         double discountValue = discount.applyTo(basket);
 
-        assertThat(discountValue, equalTo(0.0d));
+        assertThat(discountValue, equalTo(NO_DISCOUNT));
     }
 }
