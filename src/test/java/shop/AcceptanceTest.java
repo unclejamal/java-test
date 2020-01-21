@@ -30,12 +30,12 @@ public class AcceptanceTest extends AcceptanceTestBase {
         DiscountingProcess discountingProcess = new DiscountingProcess(
                 new TimeLimitedDiscount(
                         frozenClock,
-                        dateRangeFromYesterdayAndValidForSevenDays(frozenClock.today()),
+                        dateRangeFromYesterdayAndValidForSevenDays(LocalDate.of(2020, 1, 20)),
                         new BuyTwoGetOneForHalfPriceDiscount(tinOfSoup, loafOfBread)
                 ),
                 new TimeLimitedDiscount(
                         frozenClock,
-                        dateRangeFromIn3DaysAndValidUntilTheEndOfTheFollowingMonth(frozenClock.today()),
+                        dateRangeFromIn3DaysAndValidUntilTheEndOfTheFollowingMonth(LocalDate.of(2020, 1, 20)),
                         new SingleProductByPercentageDiscount(apple, 10)
                 )
         );
