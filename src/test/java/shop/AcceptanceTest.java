@@ -44,31 +44,6 @@ public class AcceptanceTest extends AcceptanceTestBase {
     }
 
     @Test
-    public void quitTheShop() throws Exception {
-        enter("quit");
-    }
-
-    @Test
-    public void unknownCommand() throws Exception {
-        enter("watch a movie");
-        assertOutputLines("Unknown command");
-        enter("quit");
-    }
-
-    @Test
-    public void priceMixedBasket() throws Exception {
-        enter("buy 1 apple");
-        enter("buy 2 apples");
-        enter("buy 1 bottle of milk");
-        enter("buy 3 tins of soup");
-        enter("buy 1 loaf of bread");
-        enter("price");
-        assertOutputLines("Total cost: £3.95",
-                "Basket content: 3 apples, 1 bottle of milk, 1 loaf of bread, 3 tins of soup");
-        enter("quit");
-    }
-
-    @Test
     public void acceptanceTest_3TinsOfSoup2LoavesOfBreadBoughtToday() throws Exception {
         enter("buy 3 tins of soup");
         enter("buy 2 loaves of bread");
@@ -110,6 +85,18 @@ public class AcceptanceTest extends AcceptanceTestBase {
         enter("price");
         assertOutputLines("Total cost: £1.97",
                 "Basket content: 3 apples, 1 loaf of bread, 2 tins of soup");
+        enter("quit");
+    }
+
+    @Test
+    public void quitTheShop() throws Exception {
+        enter("quit");
+    }
+
+    @Test
+    public void unknownCommand() throws Exception {
+        enter("watch a movie");
+        assertOutputLines("Unknown command");
         enter("quit");
     }
 
