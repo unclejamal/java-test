@@ -1,3 +1,19 @@
+## From Pawel: How to run it
+  1. Please run the acceptance tests by executing:
+      - shop.AcceptanceTest class from IDE
+      - or as a Gradle command: ./gradlew clean test --tests AcceptanceTest
+  2. Please run all the tests by executing:
+      - src/main/test directory from IDE
+      - or as a Gradle command: ./gradlew clean test
+  3. Please run the application and use the command line interface by executing:
+      - shop.main.Main class from IDE
+      - or as a Gradle command: ./gradlew run -q --console=plain
+                
+## From Pawel: My assumptions
+  1. For the purpose of simplicity I picked Double to represent money. In a real application I would have chosen a better suited BigDecimal.
+  2. The way I understood the instructions, when you start the application it should always run "now" - meaning that the "Buy 2 tins of soup and get a loaf of bread half price" offer is active and the "Apples have a 10% discount" offer is not. That means the offer for apples cannot be manually tested from the command line interface. It is however tested via AcceptanceTests and unit tests.  
+  3. I assumed the "Buy 2 tins of soup and get a loaf of bread half price" offer is applicable multiple times (e.g. twice if the basket contains 4 tins of soup and 2 loaves of bread).
+
 # Java Exercise
 
 This is a simple exercise to allow you to demostrate your software engineering skillset. It's completly up to you how long you give yourself, stop when you're happy with the quality of your work, but we don't expect it to take too long.
@@ -51,9 +67,3 @@ All outputs must print to the command line.
      - Expected total cost = 1.84;
    - Price a basket containing: 3 apples, 2 tins of soup and a loaf of bread, bought in 5 days time,
      - Expected total cost = 1.97.
- 
-### My comments and assumptions
-  TODO: Add my comments and assumptions
-
-### How to run it
-  TODO: Instructions how to run the application
