@@ -41,6 +41,6 @@ public class Basket {
     }
 
     public void addDiscountForValueOf(double discountValue) {
-        totalDiscountValue += discountValue;
+        totalDiscountValue = discountValue;
     }
 }
